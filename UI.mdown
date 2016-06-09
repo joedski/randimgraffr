@@ -1,0 +1,45 @@
+UI
+===
+
+What all do I want to show here?
+- Timing selection
+- Animal folder selection (we really only need a list of animal folders, then, since we pick randomly from the items within)
+- Controls
+	- Skip an image
+
+
+
+Layout
+------
+
+- Left:
+	- Top: Timing Selection.
+		- 30s, 45s, 60s, 90s, No Timer
+	- Rest: Animal List.
+		- Two states: "No animals" (animals list is empty) and "Animals" (not empty)
+- Main:
+	- Image Display: Has two states:
+		- "Running":
+			- Shows an image, and transitions to another one when a timer ticks.
+			- Clicking anywhere on this pane goes to the next page, as should pressing ... something.
+				- Right arrow?  Space?  Either?
+			- Also shows a Stop button at the Bottom.
+		- "Waiting":
+			- Shows the images drawn in the last round, if any. (initially, there won't be any...)
+			- Shows a Start button at the Bottom.
+
+
+
+Main States
+-----------
+
+- Idle/Waiting
+	- This includes when the initial list is loading, though it'd be better if we sent it with... I should do that.
+- Running
+	- This has a few sub states:
+		- Image Loading
+		- Image Showing
+			- During this time, the next image should be picked and preemptively loaded.
+			- When the timer tick or User causes a Next:
+				- If the next image is not loaded, go to Image Loading.
+				- Else, go immediately to Image Showing.

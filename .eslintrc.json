@@ -1,0 +1,19 @@
+{
+	// Guess we need to use babel-eslint for module and arrowfunc and such support.
+	// Even when targeting node!
+	"parser": "babel-eslint",
+	"parserOptions": {
+    "ecmaVersion": 6,
+    // Do we need both this and ecmaFeatures.modules?
+		"sourceType": "module",
+		"ecmaFeatures": {
+		  "impliedStrict": true,
+		  "modules": true
+		}
+	},
+	"env": {
+		"browser": true,
+	  "node": true,
+	  "es6": true
+	}
+}

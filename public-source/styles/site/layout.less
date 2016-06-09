@@ -1,0 +1,75 @@
+/**
+ * General Layout
+ */
+
+#app-root {
+}
+
+.flex-row, .flex-column {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: stretch;
+}
+
+.flex-row {
+	flex-direction: row;
+}
+
+.flex-column {
+	flex-direction: column;
+}
+
+.flex-padded {
+	padding: (@padding-base-flex / 2);
+
+	> * {
+		margin: (@padding-base-flex / 2);
+	}
+}
+
+.flex-children-fill {
+	> * {
+		flex-grow: 1;
+	}
+}
+
+.flex-children-center {
+	justify-content: center;
+	align-items: center;
+}
+
+.flex-grow {
+	flex-grow: 1;
+}
+
+
+
+/**
+ * Specific Layout
+ */
+
+#main-controls {
+	flex: 0 1 200px;
+}
+
+#image-pane {
+	flex: 1 1 auto;
+}
+
+#animal-selection-controls {
+	position: relative;
+	overflow: scroll;
+}
+
+#animal-selection-controls > .message {
+	position: absolute;
+
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+#image-pane > .empty-icon > .glyphicon {
+	font-size: 3em;
+}
