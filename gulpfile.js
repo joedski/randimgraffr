@@ -119,7 +119,7 @@ gulp.task( 'site:assets:bootstrap:fonts', () => {
 //////// Styles
 
 gulp.task( 'site:styles', () => {
-	return gulp.src([ `${ sourceDir }/${ stylesSourceDir }/bootstrap.less` ], { base: `${ sourceDir }/${ stylesSourceDir }` })
+	return gulp.src([ `${ sourceDir }/${ stylesSourceDir }/*.less` ])
 		.pipe( sourcemaps.init() )
 		.pipe( less({
 			paths: [
