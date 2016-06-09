@@ -12,7 +12,7 @@ var async = require( 'async' );
 var express = require( 'express' );
 var router = express.Router();
 
-var animalsDir = path.join( '/', 'Users', 'Joe', 'Dropbox', 'Animal Photos' );
+var animalsDir = process.env.ANIMALS_DIR;
 
 
 
