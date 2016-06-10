@@ -60,13 +60,14 @@ gulp.task( 'site:scripts', [
 ]);
 
 gulp.task( 'site:scripts:main', () => {
-	return browserify( `${ sourceDir }/scripts/app.js`, { debug: true })
-		.transform( babelify, {
-			presets: [ 'es2015', 'react' ]
-		})
+	return browserify( `${ sourceDir }/scripts/animals.js`, { debug: true })
+		// .transform( babelify, {
+		// 	presets: [ 'es2015', 'react' ]
+		// })
+		.transform( babelify )
 		.bundle()
-		.on( 'error', ( err ) => { console.error( err ); this.emit( 'end' ); })
-		.pipe( source( 'app.js' ) )
+		.on( 'error', function( err ) { console.error( err.message ); console.error( err.codeFrame ); this.emit( 'end' ); })
+		.pipe( source( 'animals.js' ) )
 		.pipe( buffer() )
 		// .pipe( concat( 'app.js' ) )
 		.pipe( sourcemaps.init({ loadmaps: true }) )
@@ -127,7 +128,7 @@ gulp.task( 'site:styles', () => {
 			],
 			plugins: [ autoprefix ]
 		}))
-		.on( 'error', ( err ) => { console.error( err ); this.emit( 'end' ); })
+		.on( 'error', function( err ) { console.error( err.message ); console.error( err.codeFrame ); this.emit( 'end' ); })
 		.pipe( sourcemaps.write( './' ) )
 		.pipe( gulp.dest( `${ outputDir }/${ stylesOutputDir }` ) )
 		;

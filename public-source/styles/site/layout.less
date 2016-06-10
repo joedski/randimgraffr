@@ -27,6 +27,10 @@
 	}
 }
 
+.flex-padded-nested {
+	margin: (-1 * @padding-base-flex / 2);
+}
+
 .flex-children-fill {
 	> * {
 		flex-grow: 1;
@@ -40,6 +44,10 @@
 
 .flex-grow {
 	flex-grow: 1;
+}
+
+.flex-fixed {
+	flex: 0 0 auto;
 }
 
 
@@ -72,4 +80,11 @@
 
 #image-pane > .empty-icon > .glyphicon {
 	font-size: 3em;
+}
+
+.animal-selection-panel {
+	height: 100%;
+	margin: 0;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }

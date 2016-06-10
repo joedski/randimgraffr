@@ -31,7 +31,16 @@ router.get( '/', function redirectRoot( req, res, next ) {
 });
 
 router.get( '/practice', function render( req, res, next ) {
-	res.render( 'animals', { title: "Animals!" });
+	listDirishes( animalsDir )( function( error, animalsList ) {
+		if( error ) {
+			return next( error );
+		}
+
+		res.render( 'animals', {
+			title: "Animals!",
+			animalsListJSON: JSON.stringify( animalsList )
+		});
+	});
 });
 
 // Beh.
@@ -101,6 +110,10 @@ function handleList( lister, req, res, next ) {
 function listDirishes( dir ) {
 	return function listDirishesBound( next ) {
 		fs.readdir( dir, function( error, animalsListRaw ) {
+			if( error ) {
+				return next( error );
+			}
+
 			// Note: Should really just run stat and check if they're dirs.
 			var animalsList = animalsListRaw
 				.filter( filterOutDotFiles )
@@ -116,6 +129,10 @@ function listDirishes( dir ) {
 function listFilishes( dir ) {
 	return function listFilishesBound( next ) {
 		fs.readdir( dir, function( error, animalsListRaw ) {
+			if( error ) {
+				return next( error );
+			}
+
 			// Note: Should really just run stat and check if they're dirs.
 			var animalsList = animalsListRaw
 				.filter( filterInFilesWithExtensions )

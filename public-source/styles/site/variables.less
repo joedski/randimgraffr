@@ -36,3 +36,29 @@
 
 // Default: Same as @navbar-padding-horizontal.
 @padding-base-flex: floor((@grid-gutter-width / 2));
+
+/**
+ * List Group Item
+ */
+
+@list-group-bg: @btn-default-bg;
+@list-group-border: @btn-default-border;
+
+@list-group-hover-bg: lighten(@btn-default-bg, 7%);
+
+@list-group-disabled-color: darken(@btn-default-color, 25%);
+@list-group-disabled-bg: @body-bg;
+
+@list-group-link-color:         darken(@btn-default-color, 10%);
+@list-group-link-hover-color:   @list-group-link-color;
+@list-group-link-heading-color: darken(@btn-default-color, 10%);
+
+/**
+ * Panel
+ */
+
+@panel-bg: @body-bg;
+
+@panel-inner-border: @btn-default-border;
+@panel-footer-bg: @btn-default-bg;
+@panel-default-border: @btn-default-border;
