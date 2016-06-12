@@ -1,7 +1,6 @@
 import * as actions from '../actions';
 
 const imageTicker = () => {
-	// let intervalId = null;
 	let tickId = null;
 
 	const startTicking = ( dispatch, state ) => {
