@@ -70,7 +70,7 @@ gulp.task( 'site:scripts:main', () => {
 		.pipe( source( 'animals.js' ) )
 		.pipe( buffer() )
 		// .pipe( concat( 'app.js' ) )
-		.pipe( sourcemaps.init({ loadmaps: true }) )
+		.pipe( sourcemaps.init({ loadMaps: true }) )
 		.pipe( sourcemaps.write( './' ) )
 		.pipe( gulp.dest( `${ outputDir }/${ scriptsOutputDir }` ) )
 		;

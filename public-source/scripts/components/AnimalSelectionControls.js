@@ -29,11 +29,13 @@ const AnimalSelectionControlsPopulated = ( props ) => {
 
 const AnimalButton = ( props, animal, index ) => {
 	let isCurrent = props.currentAnimal === index;
-	let isLoaded = props.currentAnimalImages != null;
+	// let isLoaded = props.currentAnimalImages != null;
+	let loadingState = props.currentAnimalLoading;
 	let buttonClassNames = classNames( 'list-group-item', {
 		active: isCurrent,
-		'list-group-item-warning': isCurrent && isLoaded === false,
-		'list-group-item-success': isCurrent && isLoaded === true,
+		'list-group-item-warning': isCurrent && loadingState === 'loading',
+		'list-group-item-danger': isCurrent && loadingState === 'failed',
+		'list-group-item-success': isCurrent && loadingState === 'completed',
 	});
 
 	return (
@@ -41,18 +43,25 @@ const AnimalButton = ( props, animal, index ) => {
 			{ props.animals[ index ] }
 			{ isCurrent === false
 				? <span className="pull-right"></span>
-				: isLoaded
+				: loadingState === 'completed'
 				? <span className="badge pull-right">{ props.currentAnimalImages.length }</span>
-				: <span className="badge pull-right">Loading...</span> }
+				: loadingState === 'failed'
+				? <span className="badge pull-right">:(</span>
+				: loadingState === 'loading'
+				? <span className="badge pull-right">Loading...</span>
+				: <span className="pull-right"></span> 
+			}
 		</button>
 	);
 }
 
 AnimalSelectionControls.propTypes = {
-	// Required.  May be NaN.  If NaN, the user hasn't selected anything.
-	currentAnimal: PropTypes.number.isRequired,
 	// Not required.  If not set, means the animals list isn't loaded yet.
 	animals: PropTypes.array,
+	// Required.  May be NaN.  If NaN, the user hasn't selected anything.
+	currentAnimal: PropTypes.number.isRequired,
+	// Optional.  Undefined indicates no action has been taken yet, and MUST be accounted for as a state.
+	currentAnimalLoading: PropTypes.string,
 	// Not required!  If not set, means that the current animal's image list isn't loaded yet.
 	currentAnimalImages: PropTypes.array,
 	onSelectAnimal: PropTypes.func.isRequired

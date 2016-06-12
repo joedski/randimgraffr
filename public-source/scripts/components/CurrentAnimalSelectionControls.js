@@ -3,12 +3,16 @@ import * as actions from '../actions';
 import AnimalSelectionControls from './AnimalSelectionControls';
 
 const mapState = state => {
+	let currentAnimal = state.currentState.currentAnimal;
+	let currentAnimalLoading = state.currentState.animalsLoading[ currentAnimal ];
+
 	return {
-		currentAnimal: state.currentState.currentAnimal,
 		animals: state.animals,
-		currentAnimalImages: isNaN( state.currentState.currentAnimal )
-			? null
-			: (state.animalImages[ state.currentState.currentAnimal ] || null)
+		currentAnimal: currentAnimal,
+		currentAnimalLoading: currentAnimalLoading,
+		currentAnimalImages: isNaN( currentAnimal )
+			? []
+			: (state.animalImages[ currentAnimal ] || [])
 	};
 };
 

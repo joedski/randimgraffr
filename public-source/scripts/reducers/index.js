@@ -78,11 +78,11 @@ const initialAnimalImages = [];
 
 function animalImages( state = initialAnimalImages, action ) {
 	switch( action.type ) {
-		case action.COMPLETE_LOAD_ANIMAL: {
+		case actions.COMPLETE_LOAD_ANIMAL: {
 			return _.set( [ action.payload.index ], action.payload.images, state );
 		}
 
-		case action.FAIL_LOAD_ANIMAL: {
+		case actions.FAIL_LOAD_ANIMAL: {
 			return _.set( [ action.payload.index ], [], state );
 		}
 
