@@ -1,57 +1,86 @@
 import * as actions from '../actions';
 
 const imageTicker = () => {
-	let intervalId = null;
+	// let intervalId = null;
+	let tickId = null;
 
-	const stopTimer = () => {
-		if( intervalId == null ) return;
-		clearInterval( intervalId );
-		intervalId = null;
-	}
+	const startTicking = ( dispatch, state ) => {
+		let interval = parseIntervalString( state.currentState.interval );
 
-	const startTimer = ( fn, interval ) => {
-		intervalId = setInterval( fn, interval );
-	}
-
-	return store => next => action => {
-		// Actions:
-		// - SELECT_INTERVAL
-		// - START_SESSION
-		// - STOP_SESSION
-
-		let prevState = store.getState();
-		let result = next( action );
-		let nextState = store.getState();
-
-		let isStarting =
-			nextState.currentState.slideshow === 'running' &&
-			prevState.currentState.slideshow !== 'running';
-
-		let isStopping =
-			nextState.currentState.slideshow !== 'running' &&
-			prevState.currentState.slideshow === 'running';
-
-		let isIntervalChanging =
-			prevState.currentState.interval !== nextState.currentState.interval;
-
-		let fn = () => {
-			store.dispatch( actions.nextImage() );
+		let tick = () => {
+			dispatch( actions.nextImage() );
+			conditionallySetTimeout();
 		};
 
-		if( isStarting || isIntervalChanging ) {
-			let interval = parseIntervalString( nextState.currentState.interval );
-
-			if( interval !== Infinity ) {
-				stopTimer();
-				startTimer( fn, interval );
+		let conditionallySetTimeout = () => {
+			if( interval === Infinity || isNaN( interval ) ) {
+				return;
 			}
-		}
 
-		if( isStopping ) {
-			stopTimer();
-		}
+			stopTicking();
+			tickId = setTimeout( tick, interval );
+		};
 
-		return result;
+		conditionallySetTimeout();
+	};
+
+	const stopTicking = () => {
+		if( tickId == null ) return;
+		clearTimeout( tickId );
+		tickId = null;
+	};
+
+	return store => next => action => {
+		switch( action.type ) {
+			case actions.SELECT_INTERVAL: {
+				let result = next( action );
+				let nextState = store.getState();
+
+				let isRunning = nextState.currentState.slideshow === 'running';
+
+				if( isRunning ) {
+					stopTicking();
+					startTicking( store.dispatch, nextState );
+				}
+
+				return result;
+			}
+
+			case actions.START_SESSION: {
+				let prevState = store.getState();
+				let result = next( action );
+				let nextState = store.getState();
+
+				let isRunning = nextState.currentState.slideshow === 'running';
+				let wasRunning = prevState.currentState.slideshow === 'running';
+
+				let isStarting = isRunning && ! wasRunning;
+
+				if( isStarting ) {
+					stopTicking();
+					startTicking( store.dispatch, nextState );
+				}
+
+				return result;
+			}
+
+			case actions.STOP_SESSION: {
+				stopTicking();
+				return next( action );
+			}
+
+			case actions.NEXT_IMAGE: {
+				let result = next( action );
+				let nextState = store.getState();
+
+				stopTicking();
+				startTicking( store.dispatch, nextState );
+
+				return result;
+			}
+
+			default: return next( action );
+		}
 	};
 };
 

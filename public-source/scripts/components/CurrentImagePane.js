@@ -18,7 +18,9 @@ const mapState = state => {
 };
 
 const mapDispatch = dispatch => {
-	return {};
+	return {
+		onClick( event ) { dispatch( actions.nextImage() ); },
+	};
 };
 
 const CurrentImagePane = connect( mapState, mapDispatch )( ImagePane );

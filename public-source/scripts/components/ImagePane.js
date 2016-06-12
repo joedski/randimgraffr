@@ -28,7 +28,11 @@ const ImagePaneRunning = ( props ) => {
 		let imgSrc = `/animals/images/${ encodeURIComponent( animalName ) }/${ encodeURIComponent( animalImage ) }`;
 
 		return (
-			<section id="image-pane" className="flex-grow flex-row flex-children-fill flex-padded image-pane-idle">
+			<section
+				id="image-pane"
+				className="flex-grow flex-row flex-children-fill flex-padded image-pane-idle"
+				onClick={ props.onClick || (() => {}) }
+				>
 				<div className="image-pane-image"
 					style={{
 						backgroundSize: `contain`,
@@ -47,7 +51,8 @@ const ImagePaneRunning = ( props ) => {
 ImagePane.propTypes = {
 	slideshowState: PropTypes.string,
 	animalName: PropTypes.string,
-	animalImage: PropTypes.string
+	animalImage: PropTypes.string,
+	onClick: PropTypes.func,
 };
 
 export default ImagePane;
