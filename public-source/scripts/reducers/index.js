@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import * as actions from '../actions';
+import _ from 'lodash/fp';
 
 const initialCurrentState = {
 	// String: 'idle' | 'running'
@@ -13,7 +14,9 @@ const initialCurrentState = {
 	// Shuffle?
 	animalShuffle: null,
 	// Index
-	currentAnimalImage: NaN
+	currentAnimalImage: NaN,
+	// { [Index]: (undefined | 'loading' | 'completed' | 'failed') }
+	animalsLoading: [],
 };
 
 function currentState( state = initialCurrentState, action ) {
@@ -29,6 +32,29 @@ function currentState( state = initialCurrentState, action ) {
 			return {
 				...state,
 				currentAnimal: action.payload.index
+			};
+		}
+
+		// TODO: Move into sub-thingy.
+
+		case actions.REQUEST_LOAD_ANIMAL: {
+			return {
+				...state,
+				animalsLoading: _.set( [ action.payload.index ], 'loading', state.animalsLoading )
+			};
+		}
+
+		case actions.COMPLETE_LOAD_ANIMAL: {
+			return {
+				...state,
+				animalsLoading: _.set( [ action.payload.index ], 'completed', state.animalsLoading ),
+			};
+		}
+
+		case actions.FAIL_LOAD_ANIMAL: {
+			return {
+				...state,
+				animalsLoading: _.set( [ action.payload.index ], 'failed', state.animalsLoading )
 			};
 		}
 
@@ -52,6 +78,14 @@ const initialAnimalImages = [];
 
 function animalImages( state = initialAnimalImages, action ) {
 	switch( action.type ) {
+		case action.COMPLETE_LOAD_ANIMAL: {
+			return _.set( [ action.payload.index ], action.payload.images, state );
+		}
+
+		case action.FAIL_LOAD_ANIMAL: {
+			return _.set( [ action.payload.index ], [], state );
+		}
+
 		default: return state;
 	}
 }

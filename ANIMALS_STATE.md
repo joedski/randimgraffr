@@ -9,6 +9,7 @@ State: Animals
 		- currentSessionAnimals: Array<Index> - Array of the Animal Images that were shown this session.
 		- animalShuffle: Shuffle - Holds the Animal Images to deal out.
 		- currentAnimalImage: Index - Index of the currently dealt Animal Image.
+		- animalsLoading: Map<Index, String> = `{[index]: (undefined | 'loading' | 'completed' | 'failed') }`
 	- animals: Array<String>
 	- animalImages: Array<Array<String>> - Sparse array of Animal Images arrays.
 

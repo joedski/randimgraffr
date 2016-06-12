@@ -9,6 +9,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import createReduxLogger from 'redux-logger';
+import requestAnimal from './reducer-middleware/requestAnimal';
+import handleAnimalRequest from './reducer-middleware/handleAnimalRequest';
 import reducer from './reducers';
 import _ from 'lodash/fp';
 import decodeHTMLEntities from './util/decode-html-entities';
@@ -23,6 +25,8 @@ let animalsList = JSON.parse( decodeHTMLEntities( $( '#animals-list' ).html() ) 
 let store = createStore(
 	reducer,
 	applyMiddleware(
+		requestAnimal,
+		handleAnimalRequest({ animalUrlBase: '/animals' }),
 		createReduxLogger()
 	)
 );

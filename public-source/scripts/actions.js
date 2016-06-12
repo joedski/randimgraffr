@@ -16,6 +16,13 @@ export const selectInterval = ( interval, meta ) => action( SELECT_INTERVAL, { i
 export const SELECT_ANIMAL = 'SELECT_ANIMAL';
 export const selectAnimal = ( index, meta ) => action( SELECT_ANIMAL, { index }, meta );
 
+export const REQUEST_LOAD_ANIMAL = 'REQUEST_LOAD_ANIMAL';
+export const requestLoadAnimal = ( index, meta ) => action( REQUEST_LOAD_ANIMAL, { index }, meta );
+export const COMPLETE_LOAD_ANIMAL = 'COMPLETE_LOAD_ANIMAL';
+export const completeLoadAnimal = ( index, images, meta ) => action( COMPLETE_LOAD_ANIMAL, { index, images }, meta );
+export const FAIL_LOAD_ANIMAL = 'FAIL_LOAD_ANIMAL';
+export const failLoadAnimal = ( index, reason, meta ) => action( FAIL_LOAD_ANIMAL, { index, reason }, meta );
+
 export const START_SESSION = 'START_SESSION';
 export const startSession = ( meta ) => action( START_SESSION, undefined, meta );
 
