@@ -21,8 +21,8 @@ State: Animals
 		- slideshow: 'idle'
 		- interval: '30s'
 		- currentAnimal: NaN
-		- nextAnimal: NaN
 		- currentSessionAnimals: []
+		- currentAnimalImage: null
 		- animalShuffle: null
 	- animals: []
 
@@ -47,3 +47,12 @@ These actions are usually caused by the User, though can be caused by other thin
 These actions are never caused by the user.
 
 - `setAnimals( animals: Array<String> )`
+
+
+
+Starting a Session
+------------------
+
+Obviously, there's just the `startSession` action, but we also need to use this moment to set up the image shuffle.  After that, we need to immediately pick out the first image.
+
+I think the easiest way to do this is to just preemptively dispatch `nextImage` after dispatching `startSession`.

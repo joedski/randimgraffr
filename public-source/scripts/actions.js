@@ -24,13 +24,16 @@ export const FAIL_LOAD_ANIMAL = 'FAIL_LOAD_ANIMAL';
 export const failLoadAnimal = ( index, reason, meta ) => action( FAIL_LOAD_ANIMAL, { index, reason }, meta );
 
 export const START_SESSION = 'START_SESSION';
-export const startSession = ( meta ) => action( START_SESSION, undefined, meta );
+export const startSession = ( meta ) => action( START_SESSION, {}, meta );
 
 export const STOP_SESSION = 'STOP_SESSION';
-export const stopSession = ( meta ) => action( STOP_SESSION, undefined, meta );
+export const stopSession = ( meta ) => action( STOP_SESSION, {}, meta );
+
+export const SET_SHUFFLE = 'SET_SHUFFLE';
+export const setShuffle = ( shuffle, meta ) => action( SET_SHUFFLE, { shuffle }, meta );
 
 export const NEXT_IMAGE = 'NEXT_IMAGE';
-export const nextSession = ( meta ) => action( NEXT_IMAGE, undefined, meta );
+export const nextImage = ( meta ) => action( NEXT_IMAGE, {}, meta );
 
 export const SET_ANIMALS = 'SET_ANIMALS';
 export const setAnimals = ( animals, meta ) => action( SET_ANIMALS, { animals }, meta );

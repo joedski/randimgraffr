@@ -58,6 +58,39 @@ function currentState( state = initialCurrentState, action ) {
 			};
 		}
 
+		// Shuffle...
+
+		case actions.SET_SHUFFLE: {
+			return {
+				...state,
+				shuffle: action.payload.shuffle,
+			};
+		}
+
+		case actions.NEXT_IMAGE: {
+			let shuffle = state.shuffle;
+
+			return {
+				...state,
+				shuffle: [ ...shuffle.slice( 1 ), shuffle[ 0 ] ],
+				currentAnimalImage: shuffle[ 0 ]
+			};
+		}
+
+		case actions.START_SESSION: {
+			return {
+				...state,
+				slideshow: 'running'
+			};
+		}
+
+		case actions.STOP_SESSION: {
+			return {
+				...state,
+				slideshow: 'idle'
+			};
+		}
+
 		default: return state;
 	}
 }

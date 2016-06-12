@@ -3,6 +3,7 @@
  */
 
 // jquery is installed globally.
+import 'whatwg-fetch';
 
 import ReactDOM from 'react-dom';
 import React from 'react';
@@ -11,6 +12,8 @@ import { createStore, applyMiddleware } from 'redux';
 import createReduxLogger from 'redux-logger';
 import requestAnimal from './reducer-middleware/requestAnimal';
 import handleAnimalRequest from './reducer-middleware/handleAnimalRequest';
+import createImageTicker from './reducer-middleware/imageTicker';
+import startSession from './reducer-middleware/startSession';
 import reducer from './reducers';
 import _ from 'lodash/fp';
 import decodeHTMLEntities from './util/decode-html-entities';
@@ -27,6 +30,8 @@ let store = createStore(
 	applyMiddleware(
 		requestAnimal,
 		handleAnimalRequest({ animalUrlBase: '/animals' }),
+		createImageTicker(),
+		startSession,
 		createReduxLogger()
 	)
 );

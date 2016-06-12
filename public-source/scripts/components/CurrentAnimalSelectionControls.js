@@ -19,6 +19,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
 	return {
 		onSelectAnimal( index ) {
+			dispatch( actions.stopSession() );
 			return dispatch( actions.selectAnimal( index ) );
 		}
 	}

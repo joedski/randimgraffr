@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import CurrentTimingControls from './CurrentTimingControls';
 import CurrentAnimalSelectionControls from './CurrentAnimalSelectionControls';
-import ImagePane from './ImagePane';
+import CurrentImagePane from './CurrentImagePane';
 import CurrentImageControls from './CurrentImageControls';
 
 const AppRoot = ( props ) => {
@@ -12,7 +12,7 @@ const AppRoot = ( props ) => {
 				<CurrentAnimalSelectionControls />
 			</section>
 			<section id="image" className="flex-column">
-				<ImagePane />
+				<CurrentImagePane />
 				<CurrentImageControls />
 			</section>
 		</article>
