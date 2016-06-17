@@ -19,10 +19,28 @@
 	flex: 0 1 200px;
 }
 
+.main-controls__timing-controls {
+	// I'm not exactly sure how this should be handled, but I think this is probably good.
+	// Reasoning being that main-controls knows for sure that timing-controls is a certain thing,
+	// and that specifically, it has .flex-padded and thus, since .main-controls itself is .flex-padded,
+	// it should apply .flex-padded-nested to its specific .timing-controls.
+	//
+	// Note: If .timing-controls later changes to unpadded (say a .button-group) then this WILL
+	// have to be removed.
+	//
+	// This does mean this is only marginally better than .timing-controls doing it itself.
+	//
+	// This is one case where it may be potentially less future work to just use blocks and child selectors.
+	// That is, .flex-padded is a block, and .flex-padded--nested is a modifier.
+	// Then, define .flex-padded > .flex-padded--nested to work in this way,
+	// while .flex-padded--nested outside of .flex-padded does nothing.
+	// Naming it .flex-padded--collapse might be better.
+	.flex-padded-nested;
+}
+
 
 
 .timing-controls {
-	.flex-padded-nested;
 	.flex-fixed;
 
 	.flex-row;

@@ -24,6 +24,17 @@
 	}
 }
 
+/**
+ * Note: A better way to do this might be something like this:
+ * .flex-padded defines the normal padding as above.
+ * .flex-padded-nested defines nothing by itself.
+ * but, .flex-padded > .flex-padded-nested adds the negative margin.
+ * This allows a component to be freely defined as .flex-padded-nested without having to worry about
+ * popping outside of non-flex-padded things.
+ *
+ * The problem is that I'm not sure where this sits in BEM.
+ */
+
 .flex-padded-nested {
 	margin: (-1 * @padding-base-flex / 2);
 }

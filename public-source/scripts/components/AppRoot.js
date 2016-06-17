@@ -8,8 +8,8 @@ const AppRoot = ( props ) => {
 	return (
 		<article className="app-root">
 			<section className="main-controls">
-				<CurrentTimingControls />
-				<CurrentAnimalSelectionControls />
+				<CurrentTimingControls className="main-controls__timing-controls" />
+				<CurrentAnimalSelectionControls className="main-controls__animal-selection-controls" />
 			</section>
 			<section className="app-image">
 				<CurrentImagePane />

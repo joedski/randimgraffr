@@ -7,7 +7,7 @@ const AnimalSelectionControls = ( props ) => {
 	}
 
 	return (
-		<section className="animal-selection-controls">
+		<section className={ classNames( 'animal-selection-controls', props.className ) }>
 			<div className="animal-selection-controls__message">
 				<div className="animal-selection-controls__message-content">Please wait while we get the animals...</div>
 			</div>
@@ -17,7 +17,7 @@ const AnimalSelectionControls = ( props ) => {
 
 const AnimalSelectionControlsPopulated = ( props ) => {
 	return (
-		<section className="animal-selection-controls animal-selection-controls--populated">
+		<section className={ classNames( 'animal-selection-controls', 'animal-selection-controls--populated', props.className ) }>
 			<div className="animal-selection-controls__panel panel panel-default">
 				<div className="animal-selection-controls__list list-group">
 					{ props.animals.map( ( animal, index ) => AnimalButton( props, animal, index ) ) }

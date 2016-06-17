@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 const TimingControls = ( props ) => (
-	<section className="timing-controls">
+	<section className={ classNames( 'timing-controls', props.className ) }>
 		<div onClick={ () => props.onSelectInterval( '30s' ) }      className={ buttonClass( '30s', props.currentInterval )}>30s</div>
 		<div onClick={ () => props.onSelectInterval( '45s' ) }      className={ buttonClass( '45s', props.currentInterval )}>45s</div>
 		<div onClick={ () => props.onSelectInterval( '60s' ) }      className={ buttonClass( '60s', props.currentInterval )}>60s</div>
