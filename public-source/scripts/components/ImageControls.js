@@ -18,7 +18,7 @@ const ImageControls = ( props ) => {
 	}
 
 	return (
-		<section id="image-controls" className="flex-row flex-padded flex-children-fill">
+		<section className="image-controls">
 			{ button }
 		</section>
 	);

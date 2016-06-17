@@ -7,9 +7,9 @@ const AnimalSelectionControls = ( props ) => {
 	}
 
 	return (
-		<section id="animal-selection-controls" className="flex-grow">
-			<div className="message flex-column flex-children-center">
-				<div className="message-content">Please wait while we get the animals...</div>
+		<section className="animal-selection-controls">
+			<div className="animal-selection-controls__message">
+				<div className="animal-selection-controls__message-content">Please wait while we get the animals...</div>
 			</div>
 		</section>
 	);
@@ -17,9 +17,9 @@ const AnimalSelectionControls = ( props ) => {
 
 const AnimalSelectionControlsPopulated = ( props ) => {
 	return (
-		<section id="animal-selection-controls" className="flex-grow flex-column flex-children-fill">
-			<div className="panel panel-default animal-selection-panel">
-				<div className="list-group animal-selection-list">
+		<section className="animal-selection-controls animal-selection-controls--populated">
+			<div className="animal-selection-controls__panel panel panel-default">
+				<div className="animal-selection-controls__list list-group">
 					{ props.animals.map( ( animal, index ) => AnimalButton( props, animal, index ) ) }
 				</div>
 			</div>

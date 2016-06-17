@@ -6,12 +6,12 @@ import CurrentImageControls from './CurrentImageControls';
 
 const AppRoot = ( props ) => {
 	return (
-		<article id="app-root" className="full-window flex-row flex-children-fill">
-			<section id="main-controls" className="flex-column flex-padded">
+		<article className="app-root">
+			<section className="main-controls">
 				<CurrentTimingControls />
 				<CurrentAnimalSelectionControls />
 			</section>
-			<section id="image" className="flex-column">
+			<section className="app-image">
 				<CurrentImagePane />
 				<CurrentImageControls />
 			</section>

@@ -1,75 +1,52 @@
-/**
- * General Layout
- */
-
-#app-root {
-}
-
-.flex-row, .flex-column {
-	display: flex;
-	flex-wrap: nowrap;
-	align-items: stretch;
-}
-
-.flex-row {
-	flex-direction: row;
-}
-
-.flex-column {
-	flex-direction: column;
-}
-
-.flex-padded {
-	padding: (@padding-base-flex / 2);
-
-	> * {
-		margin: (@padding-base-flex / 2);
-	}
-}
-
-.flex-padded-nested {
-	margin: (-1 * @padding-base-flex / 2);
-}
-
-.flex-children-fill {
-	> * {
-		flex-grow: 1;
-	}
-}
-
-.flex-children-center {
-	justify-content: center;
-	align-items: center;
-}
-
-.flex-grow {
-	flex-grow: 1;
-}
-
-.flex-fixed {
-	flex: 0 0 auto;
-}
-
-
+@import (reference) "./flex-utils.less";
 
 /**
  * Specific Layout
  */
 
-#main-controls {
+.app-root {
+	.full-window;
+	.flex-row;
+	.flex-children-fill;
+}
+
+
+
+.main-controls {
+	.flex-column;
+	.flex-padded;
+
 	flex: 0 1 200px;
 }
 
-#image-pane {
-	flex: 1 1 auto;
+
+
+.timing-controls {
+	.flex-padded-nested;
+	.flex-fixed;
+
+	.flex-row;
+	.flex-padded;
 }
 
-#animal-selection-controls {
+
+
+.animal-selection-controls {
+	.flex-grow;
+
 	position: relative;
 	overflow: scroll;
 }
 
-#animal-selection-controls > .message {
+	.animal-selection-controls--populated {
+		.flex-column;
+		.flex-children-fill;
+	}
+
+.animal-selection-controls__message {
+	.flex-column;
+	.flex-children-center;
+
 	position: absolute;
 
 	top: 0;
@@ -78,13 +55,58 @@
 	right: 0;
 }
 
-#image-pane > .empty-icon > .glyphicon {
-	font-size: 3em;
-}
-
-.animal-selection-panel {
+.animal-selection-controls__panel {
 	height: 100%;
 	margin: 0;
 	overflow-x: hidden;
 	overflow-y: scroll;
+}
+
+.animal-selection-controls__list {}
+
+
+
+.app-image {
+	.flex-column;
+}
+
+
+
+.image-pane {
+	.flex-grow;
+
+	flex: 1 1 auto;
+}
+
+	.image-pane--idle {
+		.flex-row;
+		.flex-children-fill;
+	}
+
+	.image-pane--running {
+		.flex-row;
+		.flex-children-fill;
+		.flex-padded;
+	}
+
+.image-pane__empty-icon {
+	.flex-row;
+	.flex-children-center;
+
+}
+
+.image-pane__empty-icon-glyphicon {
+	font-size: 3em;
+}
+
+.image-pane__image {
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.image-controls {
+	.flex-row;
+	.flex-padded;
+	.flex-children-fill;
 }

@@ -15,8 +15,10 @@ const ImagePane = ( props ) => {
 const ImagePaneIdle = ( props ) => {
 	// TODO: Show images of last session if any.
 	return (
-		<section id="image-pane" className="flex-grow flex-row flex-children-fill image-pane-idle">
-			<div className="empty-icon flex-row flex-children-center"><span className="glyphicon glyphicon-pencil"></span></div>
+		<section className="image-pane image-pane--idle">
+			<div className="image-pane__empty-icon">
+				<span className="image-pane__empty-icon-glyphicon glyphicon glyphicon-pencil"></span>
+			</div>
 		</section>
 	);
 };
@@ -29,16 +31,15 @@ const ImagePaneRunning = ( props ) => {
 
 		return (
 			<section
-				id="image-pane"
-				className="flex-grow flex-row flex-children-fill flex-padded image-pane-idle"
+				className="image-pane image-pane--running"
 				onClick={ props.onClick || (() => {}) }
 				>
-				<div className="image-pane-image"
+				<div className="image-pane__image"
 					style={{
-						backgroundSize: `contain`,
+						// backgroundSize: `contain`,
 						backgroundImage: `url(${ imgSrc })`,
-						backgroundPosition: 'center',
-						backgroundRepeat: 'no-repeat'
+						// backgroundPosition: 'center',
+						// backgroundRepeat: 'no-repeat'
 					}}></div>
 			</section>
 		);
